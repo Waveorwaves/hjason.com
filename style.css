@@ -90,3 +90,30 @@ footer a {
 footer a:hover {
     color: #e8e8e8;
 }
+
+/* Nav */
+nav {
+  margin-bottom: 48px;
+}
+
+/* Writing page */
+.subtitle {
+  color: #999;
+  margin-bottom: 40px;
+}
+
+.quote-list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.quote p {
+  color: #111;
+  font-style: italic;
+}
+
+.author {
+  font-size: 0.85rem;
+  color: #999;
+}
