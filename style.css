@@ -1,16 +1,83 @@
 /* -- Reset & Base -- */
+:root {
+    color-scheme: light;
+    --background: #ffffff;
+    --text: #111111;
+    --muted-text: #555555;
+    --subtle-text: #999999;
+    --list-text: #777777;
+    --border: #dddddd;
+    --soft-border: #eeeeee;
+    --hover: #555555;
+    --button-background: #f5f5f5;
+}
+
+:root[data-theme="dark"] {
+    color-scheme: dark;
+    --background: #111111;
+    --text: #f2f2f2;
+    --muted-text: #b8b8b8;
+    --subtle-text: #929292;
+    --list-text: #aaaaaa;
+    --border: #444444;
+    --soft-border: #2d2d2d;
+    --hover: #ffffff;
+    --button-background: #222222;
+}
+
 *, *::before, *::after {
-    box-sizing: :border-box;
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
 body {
-    background-color: #ffffff;
-    color: #111111;
+    background-color: var(--background);
+    color: var(--text);
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-size: 16px;
     line-height: 1.7;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* -- Selection -- */
+html:not([data-theme="dark"]) ::selection {
+    background: #0008FF;
+    color: #ffffff;
+}
+
+html[data-theme="dark"] ::selection {
+    background: #fff700;
+    color: #111111;
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    display: grid;
+    width: 40px;
+    height: 40px;
+    place-items: center;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: var(--button-background);
+    color: var(--text);
+    font: inherit;
+    font-size: 1.1rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.theme-toggle:hover {
+    border-color: var(--subtle-text);
+    transform: translateY(-1px);
+}
+
+.theme-toggle:focus-visible {
+    outline: 2px solid var(--text);
+    outline-offset: 3px;
 }
 
 /* -- Layout -- */
@@ -24,12 +91,18 @@ main{
 h1 {
     font-size: 1.5rem;
     font-weight: 600;
-    color: #111;
+    color: var(--text);
     margin-bottom: 16px;
 }
 
+.real-name {
+    color: var(--subtle-text);
+    font-weight: 400;
+    font-size: 0.85em;
+}
+
 p {
-    color: #555;
+    color: var(--muted-text);
 }
 
 /* -- Sections --*/
@@ -42,7 +115,7 @@ h2 {
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #999;
+    color: var(--subtle-text);
     margin-bottom: 20px;
 }
 
@@ -52,25 +125,25 @@ ul{
 
 ul li {
     margin-bottom: 12px;
-    color: #a0a0a0;
+    color: var(--list-text);
 }
 
 strong { 
-    color: #111;
+    color: var(--text);
     font-weight: 500;
 }
 
 /* -- Links --*/
 a {
-    color: #111;
+    color: var(--text);
     text-decoration: none;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--border);
     padding-bottom: 1px;
     transition: border-color 0.2s;
 }
 
-a.hober {
-    border-color: #e8e8e8;
+a:hover {
+    border-color: var(--text);
 }
 
 /* -- Footer -- */
@@ -78,17 +151,17 @@ footer {
     display: flex;
     gap: 24px;
     padding-top: 40px;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--soft-border);
 }
 
 footer a {
     border-bottom: none;
-    color: #999;
-    font size: 0.9rem;
+    color: var(--subtle-text);
+    font-size: 0.9rem;
 }
 
 footer a:hover {
-    color: #e8e8e8;
+    color: var(--hover);
 }
 
 /* Nav */
@@ -98,7 +171,7 @@ nav {
 
 /* Writing page */
 .subtitle {
-  color: #999;
+  color: var(--subtle-text);
   margin-bottom: 40px;
 }
 
@@ -109,11 +182,11 @@ nav {
 }
 
 .quote p {
-  color: #111;
+  color: var(--text);
   font-style: italic;
 }
 
 .author {
   font-size: 0.85rem;
-  color: #999;
+  color: var(--subtle-text);
 }
